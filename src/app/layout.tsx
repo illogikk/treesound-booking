@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
+import { Inter, Zen_Antique_Soft } from 'next/font/google';
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const zen = Zen_Antique_Soft({ subsets: ['latin'], weight: '400', variable: '--font-zen' });
 
 export const metadata: Metadata = {
   title: 'TreeSound Booking',
@@ -8,18 +12,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-neutral-950 text-neutral-50">
-        <header className="border-b border-neutral-800 bg-neutral-950/80 backdrop-blur">
+    <html lang="en" className={`${inter.variable} ${zen.variable}`}>
+      <body className="min-h-screen">
+        <header className="border-b border-neutral-200 bg-white/80 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
             <div className="text-lg font-semibold tracking-tight">TreeSound</div>
-            <nav className="text-sm text-neutral-300">
-              <a className="hover:text-white transition" href="/login">Sign in</a>
+            <nav className="text-sm text-neutral-700">
+              <a className="transition hover:text-black" href="/login">Sign in</a>
             </nav>
           </div>
         </header>
         <main className="mx-auto max-w-6xl px-6 py-10">{children}</main>
-        <footer className="mt-10 border-t border-neutral-800 py-6 text-center text-xs text-neutral-400">
+        <footer className="mt-10 border-t border-neutral-200 py-6 text-center text-xs text-neutral-600">
           © {new Date().getFullYear()} TreeSound Studios
         </footer>
       </body>
