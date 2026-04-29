@@ -16,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen">
         <header className="border-b border-neutral-200 bg-white/80 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-            <div className="text-lg font-semibold tracking-tight">TreeSound</div>
+            <div className="flex items-center gap-3">
+              <img src="/treesound-logo.png" alt="TreeSound" className="h-7 w-auto" />
+            </div>
             <nav className="text-sm text-neutral-700">
               <a className="transition hover:text-black" href="/login">Sign in</a>
             </nav>
