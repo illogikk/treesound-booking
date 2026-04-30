@@ -5,6 +5,10 @@ import { createSupabaseBrowser } from '@/lib/supabaseClient';
 
 export default function LoginPage() {
   const supabase = createSupabaseBrowser();
+  // Prefer an explicit site URL to avoid localhost links in production
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (typeof window !== 'undefined' ? window.location.origin : '');
   return (
     <div className="flex min-h-[70vh] items-center justify-center">
       <div className="w-full max-w-md rounded-[10px] border border-[var(--tsd-primary)] bg-white p-6 shadow-sm">
@@ -16,6 +20,7 @@ export default function LoginPage() {
             appearance={{ theme: ThemeSupa, variables: { default: { colors: { brand: '#2e4a3f' } } } }}
             providers={[]}
             view="magic_link"
+            redirectTo={siteUrl}
           />
         </div>
       </div>
