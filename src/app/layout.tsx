@@ -20,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <img src="/treesound-logo.png" alt="TreeSound" className="h-7 w-auto" />
             </div>
             <nav className="text-sm text-neutral-700">
+              <a className="mr-4 transition hover:text-black" href="/rooms">Rooms</a>
               <a className="transition hover:text-black" href="/login">Sign in</a>
             </nav>
           </div>
