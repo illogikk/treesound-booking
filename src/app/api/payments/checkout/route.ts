@@ -40,8 +40,7 @@ export async function POST(req: NextRequest) {
           priceMoney: { amount: BigInt(total_cents), currency: 'USD' },
           locationId
         },
-        checkoutOptions: { redirectUrl, askForShippingAddress: false },
-        metadata: { room_id, start_ts, end_ts, booking_id: bookingId }
+        checkoutOptions: { redirectUrl, askForShippingAddress: false }
       });
 
       return NextResponse.json({ url: result.paymentLink?.url });

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 import { squareClient, squareLocationId } from '@/lib/square';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
@@ -28,12 +29,6 @@ export async function POST(req: NextRequest) {
       checkoutOptions: {
         redirectUrl,
         askForShippingAddress: false
-      },
-      // Keep lightweight metadata
-      metadata: {
-        room_id,
-        start_ts,
-        end_ts
       }
     });
 
@@ -43,4 +38,3 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Checkout error' }, { status: 500 });
   }
 }
-
