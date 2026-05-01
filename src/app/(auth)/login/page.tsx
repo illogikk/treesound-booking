@@ -13,13 +13,13 @@ export default function LoginPage() {
     <div className="flex min-h-[70vh] items-center justify-center">
       <div className="w-full max-w-md rounded-[10px] border border-[var(--tsd-primary)] bg-white p-6 shadow-sm">
         <h1 className="text-2xl font-semibold">Sign in</h1>
-        <p className="mt-1 text-sm text-neutral-600">Use your email to receive a magic link.</p>
+        <p className="mt-1 text-sm text-neutral-600">Use email + password (no magic link).</p>
         <div className="mt-4">
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa, variables: { default: { colors: { brand: '#2e4a3f' } } } }}
             providers={[]}
-            view="magic_link"
+            view="sign_in"
             redirectTo={siteUrl}
           />
         </div>
