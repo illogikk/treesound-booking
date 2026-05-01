@@ -1,14 +1,28 @@
 'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { createSupabaseBrowser } from '@/lib/supabaseClient';
 
 export default function LoginPage() {
   const supabase = createSupabaseBrowser();
+  const router = useRouter();
   // Prefer an explicit site URL to avoid localhost links in production
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
     (typeof window !== 'undefined' ? window.location.origin : '');
+
+  useEffect(() => {
+    // If already signed in, bounce to rooms
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) router.replace('/rooms');
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((evt, session) => {
+      if (evt === 'SIGNED_IN' && session) router.replace('/rooms');
+    });
+    return () => { sub.subscription.unsubscribe(); };
+  }, [router, supabase]);
   return (
     <div className="flex min-h-[70vh] items-center justify-center">
       <div className="w-full max-w-md rounded-[10px] border border-[var(--tsd-primary)] bg-white p-6 shadow-sm">
